@@ -10,10 +10,6 @@ export class AppService {
     private readonly transactionService: TransactionService,
   ) {}
 
-  getHello() {
-    return 'Hello World';
-  }
-
   @Interval(2000)
   handleInterval() {
     return this.tokenService.updateData();
