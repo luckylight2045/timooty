@@ -8,4 +8,8 @@ export class createTokenDTO {
   @IsNotEmpty()
   @IsString()
   price: string;
+
+  @IsNotEmpty()
+  @IsString()
+  description: string;
 }

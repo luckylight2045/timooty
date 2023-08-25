@@ -12,11 +12,12 @@ export class TokenService {
   }
 
   async addToken(data: createTokenDTO) {
-    const { title, price } = data;
+    const { title, price, description } = data;
     return await this.prisma.token.create({
       data: {
         title,
         price: parseInt(price),
+        description,
       },
     });
   }
@@ -51,6 +52,32 @@ export class TokenService {
       where: {
         id: +id,
       },
+    });
+  }
+
+  async updateData() {
+    const data: number[] = [];
+    const tokens = await this.getAllTokens();
+
+    tokens.forEach((item, index) => {
+      data.push(item.id);
+      console.log(data);
+    });
+
+    data.map(async (item) => {
+      const randomNum =
+        Math.floor(Math.random() * 3000) +
+        Math.floor(Math.random() * 4000) +
+        Math.floor(Math.random() * 500);
+      console.log(randomNum);
+      return await this.prisma.token.update({
+        where: {
+          id: item,
+        },
+        data: {
+          price: randomNum,
+        },
+      });
     });
   }
 }
