@@ -31,7 +31,8 @@ export class TokenService {
   }
 
   async updateToken(data: updateTokenDTO, id: string) {
-    if (!this.findById(id)) {
+    const existingToken = await this.findById(id);
+    if (!existingToken) {
       return new NotFoundException(`token with ${id} doesn't exist`);
     }
     return await this.prisma.token.update({
@@ -45,7 +46,8 @@ export class TokenService {
   }
 
   async deleteToken(id: string) {
-    if (!this.findById(id)) {
+    const existingToken = await this.findById(id);
+    if (!existingToken) {
       return new NotFoundException(`token with ${id} doesn't exist`);
     }
     return await this.prisma.token.delete({

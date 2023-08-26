@@ -17,7 +17,7 @@ export class TokenController {
 
   @Get('all')
   async getAllTokensCtrl() {
-    return this.tokenService.getAllTokens();
+    return await this.tokenService.getAllTokens();
   }
 
   @Post('add')
@@ -27,11 +27,11 @@ export class TokenController {
 
   @Put('update/:id')
   async updateTokenCtrl(@Body() data: updateTokenDTO, @Param('id') id) {
-    return this.tokenService.updateToken(data, id);
+    return await this.tokenService.updateToken(data, id);
   }
 
   @Delete('delete/:id')
   async deleteTokenCtrl(@Param('id') id: string) {
-    return this.tokenService.deleteToken(id);
+    return await this.tokenService.deleteToken(id);
   }
 }

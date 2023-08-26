@@ -48,7 +48,7 @@ export class TransactionService {
       return new NotFoundException();
     }
 
-    return this.prisma.transaction.delete({
+    return await this.prisma.transaction.delete({
       where: {
         id: +id,
       },
